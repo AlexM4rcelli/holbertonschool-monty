@@ -1,6 +1,6 @@
 #include "monty.h"
 
-global_cars_t vars;
+global_vars_t vars;
 
 /**
  * get_op_code - Executes the corresponding function based on opcode
