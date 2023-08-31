@@ -1,12 +1,10 @@
 # ifndef MAIN
 # define MAIN
-
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
 # include <string.h>
 # include <ctype.h>
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -35,7 +33,6 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
 /**
  * struct global_vars_s - structure to hold global variables for Monty
  * @ins: array of instruction tokens
@@ -43,7 +40,6 @@ typedef struct instruction_s
  * @buffsize: size of the buffer for input lines
  * @stack: pointer to the top of the stack
  */
-
 typedef struct global_vars_s
 {
         char **ins;
@@ -66,9 +62,9 @@ void my_add(stack_t **head, unsigned int line);
 void my_nop(stack_t **head, unsigned int line);
 
 char **parser(char *str, char *separator);
-int is_empty_line(const char *line);
+void frees(stack_t *stack, char **ins, char *buff);
 void free_all(char **array);
 void free_stack(stack_t *head);
-void frees(stack_t *stack, char **ins char *buff);
+int is_empty_line(const char *line);
 
 # endif

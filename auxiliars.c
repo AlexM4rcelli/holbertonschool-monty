@@ -7,7 +7,7 @@
  * @ins: array of instructions to free
  * @buff: string to free.
  */
-void frees(stack_t *stack, char **ins char *buff)
+void frees(stack_t *stack, char **ins, char *buff)
 {
 	free_stack(stack);
 	free_all(ins);

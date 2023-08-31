@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 			fclose(vars.file);
 			exit(EXIT_FAILURE);
 		}
-		free_all(vars.ins, vars.ins);
+		free_all(vars.ins);
 		line++;
 	}
 	if (fclose(vars.file) == -1)
