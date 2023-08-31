@@ -1,4 +1,4 @@
-# include "main.h"
+# include "monty.h"
 /**
  * my_pop - removes the top element from the stack
  * @head: double pointer to the top of the stack

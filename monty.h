@@ -61,6 +61,7 @@ void my_pint(stack_t **head, unsigned int line);
 void my_pop(stack_t **head, unsigned int line);
 void my_swap(stack_t **head, unsigned int line);
 void my_add(stack_t **head, unsigned int line);
+void my_nop(stack_t **head, unsigned int line);
 
 
 void free_all(char **array);

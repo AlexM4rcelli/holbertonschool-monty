@@ -1,4 +1,4 @@
-# include "main.h"
+# include "monty.h"
 
 /**
  * my_push - pushes an integer on a stack

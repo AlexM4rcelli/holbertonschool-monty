@@ -1,4 +1,4 @@
-# include "main.h"
+# include "monty.h"
 
 /**
  * get_op_code - Executes the corresponding function based on opcode
@@ -19,6 +19,7 @@ int get_op_code(stack_t **stack, char **ins, unsigned int line)
 		{"pop", my_pop},
 		{"swap", my_swap},
 		{"add", my_add},
+		{"nop", my_nop},
 		{NULL, NULL}
 	};
 
