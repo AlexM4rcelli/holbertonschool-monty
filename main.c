@@ -62,12 +62,12 @@ int main(int argc, char *argv[])
 	vars.file = fopen(argv[1], "r");
 	if (!vars.file)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[0]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	while ((readed = getline(&vars.buff, &vars.buffsize, vars.file)) != -1)
 	{
-		if (is_empty_line(vars.buff))
+		if (is_empty_line(vars.buff, line))
             continue;
 		vars.ins = parser(vars.buff, " $\n\t\r\a");
 		op_code = get_op_code(&vars.stack, vars.ins, line);

@@ -65,6 +65,6 @@ char **parser(char *str, char *separator);
 void frees(stack_t *stack, char **ins, char *buff);
 void free_all(char **array);
 void free_stack(stack_t *head);
-int is_empty_line(const char *line);
+int is_empty_line(const char *line, unsigned int line_number);
 
 # endif

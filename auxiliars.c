@@ -94,13 +94,17 @@ char **parser(char *str, char *separator)
 	return (tokens);
 }
 
-int is_empty_line(const char *line)
+int is_empty_line(const char *line, unsigned int line_number)
 {
     while (*line != '\0')
     {
         if (!isspace(*line))
-            return 0;
+        {
+			line_number++;
+			return 0;
+		}
         line++;
     }
+	line_number++;
     return 1;
 }
