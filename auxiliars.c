@@ -94,17 +94,24 @@ char **parser(char *str, char *separator)
 	return (tokens);
 }
 
+/**
+ * is_empty_line - verifies if the line is empty
+ * @line: the line itself
+ * @line_number: the number of the line
+ *
+ * Return: 1
+ */
 int is_empty_line(const char *line, unsigned int line_number)
 {
-    while (*line != '\0')
-    {
-        if (!isspace(*line))
-        {
+	while (*line != '\0')
+	{
+		if (!isspace(*line))
+		{
 			line_number++;
-			return 0;
+			return (0);
 		}
-        line++;
-    }
+		line++;
+	}
 	line_number++;
-    return 1;
+	return (1);
 }

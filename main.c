@@ -1,6 +1,6 @@
-# include "monty.h"
+#include "monty.h"
 
-global_vars_t vars;
+global_cars_t vars;
 
 /**
  * get_op_code - Executes the corresponding function based on opcode
@@ -50,7 +50,7 @@ int get_op_code(stack_t **stack, char **ins, unsigned int line)
  */
 int main(int argc, char *argv[])
 {
-	ssize_t readed = 0;
+	size_t readed = 0;
 	unsigned int line = 1;
 	int op_code = 0;
 
@@ -65,10 +65,10 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((readed = getline(&vars.buff, &vars.buffsize, vars.file)) != -1)
+	while ((readed = getline(&vars.buff, &vars.buffsize, vars.file)) > 0)
 	{
 		if (is_empty_line(vars.buff, line))
-            continue;
+			continue;
 		vars.ins = parser(vars.buff, " $\n\t\r\a");
 		op_code = get_op_code(&vars.stack, vars.ins, line);
 		if (op_code == -1)

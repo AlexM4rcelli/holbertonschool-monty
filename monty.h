@@ -1,5 +1,5 @@
-# ifndef MAIN
-# define MAIN
+# ifndef MONTY
+# define MONTY
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>

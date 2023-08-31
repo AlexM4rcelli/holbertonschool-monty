@@ -74,13 +74,13 @@ void my_add(stack_t **head, unsigned int line)
 
 	(*head)->next->n += (*head)->n;
 	my_pop(head, line);
-}    
+}
 
 /**
- * my_nop - No operation
- * @head: Double pointer to the top of the stack (unused)
- * @line: Line number of the instruction in the file (unused)
- */
+* my_nop - No operation
+* @head: Double pointer to the top of the stack (unused)
+* @line: Line number of the instruction in the file (unused)
+*/
 void my_nop(stack_t **head, unsigned int line)
 {
 	(void)head;
