@@ -14,6 +14,8 @@ void my_push(stack_t **head, unsigned int line)
 	if (!(vars.ins[1]))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line);
+		frees(vars.stack, vars.ins, vars.buff);
+		fclose(vars.file);
 		exit(EXIT_FAILURE);
 	}
 	num_str = vars.ins[1];
@@ -22,24 +24,24 @@ void my_push(stack_t **head, unsigned int line)
 		if (!isdigit(num_str[i]) && num_str[i] != '-')
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line);
-			free_all(vars.ins);
-			free(vars.buff);
+			frees(vars.stack, vars.ins, vars.buff);
+			fclose(vars.file);
 			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
-
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
 		perror("Error: malloc failed");
+		frees(vars.stack, vars.ins, vars.buff);
+		fclose(vars.file);
 		exit(EXIT_FAILURE);
 	}
 	num = atoi(vars.ins[1]);
 	(new)->prev = NULL;
 	(new)->n = num;
 	(new)->next = *head;
-
 	if (*head)
 		(*head)->prev = new;
 	*head = new;
@@ -74,6 +76,7 @@ void my_pint(stack_t **head, unsigned int line)
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line);
 		free_all(vars.ins);
 		free(vars.buff);
+		fclose(vars.file);
 		exit(EXIT_FAILURE);
 	}
 

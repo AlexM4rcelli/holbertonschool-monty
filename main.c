@@ -3,6 +3,45 @@
 global_vars_t vars;
 
 /**
+ * get_op_code - Executes the corresponding function based on opcode
+ * @stack: Double pointer to the top of the stack
+ * @ins: Array of instruction tokens
+ * @line: Line number of the instruction in the file
+ *
+ * Return: 0 on match, -1 if doesn't match
+ */
+int get_op_code(stack_t **stack, char **ins, unsigned int line)
+{
+	unsigned int i = 0;
+
+	instruction_t opcodes[] = {
+		{"push", my_push},
+		{"pall", my_pall},
+		{"pint", my_pint},
+		{"pop", my_pop},
+		{"swap", my_swap},
+		{"add", my_add},
+		{"nop", my_nop},
+		{NULL, NULL}
+	};
+
+	while (opcodes[i].opcode)
+	{
+		if (ins[0])
+		{
+			if (strcmp(opcodes[i].opcode, ins[0]) == 0)
+			{
+				opcodes[i].f(stack, line);
+				return (0);
+			}
+		}
+		i++;
+	}
+	return (-1);
+}
+
+
+/**
  * main - entry point of the Monty interpreter
  * @argc: number of command line arguments
  * @argv: array of command line arguments
@@ -14,35 +53,35 @@ int main(int argc, char *argv[])
 	ssize_t readed = 0;
 	unsigned int line = 1;
 	int op_code = 0;
-	FILE *file = NULL;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	file = fopen(argv[1], "r");
-	if (!file)
+	vars.file = fopen(argv[1], "r");
+	if (!vars.file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
-	while ((readed = getline(&vars.buff, &vars.buffsize, file)) != -1)
+	while ((readed = getline(&vars.buff, &vars.buffsize, vars.file)) != -1)
 	{
-		vars.ins = parser(vars.buff, " $\n\t");
+		if (is_empty_line(vars.buff))
+            continue;
+		vars.ins = parser(vars.buff, " $\n\t\r\a");
 		op_code = get_op_code(&vars.stack, vars.ins, line);
 		if (op_code == -1)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line, vars.ins[0]);
-			fclose(file);
-			free_all(vars.ins);
-			free(vars.buff);
+			frees(vars.stack, vars.ins, vars.buff);
+			fclose(vars.file);
 			exit(EXIT_FAILURE);
 		}
-		free_all(vars.ins);
+		free_all(vars.ins, vars.ins);
 		line++;
 	}
-	if (fclose(file) == -1)
+	if (fclose(vars.file) == -1)
 		exit(EXIT_FAILURE);
 	free_stack(vars.stack);
 	free(vars.buff);

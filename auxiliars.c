@@ -1,39 +1,19 @@
 # include "monty.h"
 
+
 /**
- * get_op_code - Executes the corresponding function based on opcode
- * @stack: Double pointer to the top of the stack
- * @ins: Array of instruction tokens
- * @line: Line number of the instruction in the file
- *
- * Return: 0 on match, -1 if doesn't match
+ * frees - frees every special allocation
+ * @stack: linked list to free
+ * @ins: array of instructions to free
+ * @buff: string to free.
  */
-int get_op_code(stack_t **stack, char **ins, unsigned int line)
+void frees(stack_t *stack, char **ins char *buff)
 {
-	unsigned int i = 0;
-
-	instruction_t opcodes[] = {
-		{"push", my_push},
-		{"pall", my_pall},
-		{"pint", my_pint},
-		{"pop", my_pop},
-		{"swap", my_swap},
-		{"add", my_add},
-		{"nop", my_nop},
-		{NULL, NULL}
-	};
-
-	while (opcodes[i].opcode)
-	{
-		if (strcmp(opcodes[i].opcode, ins[0]) == 0)
-		{
-			opcodes[i].f(stack, line);
-			return (0);
-		}
-		i++;
-	}
-	return (-1);
+	free_stack(stack);
+	free_all(ins);
+	free(buff);
 }
+
 
 /**
  * free_stack - frees a doubly linked list
@@ -61,12 +41,9 @@ void free_all(char **array)
 {
 	int i;
 
-	if (array)
-	{
-		for (i = 0; array[i]; i++)
-			free(array[i]);
-		free(array);
-	}
+	for (i = 0; array[i]; i++)
+		free(array[i]);
+	free(array);
 }
 
 /**
@@ -115,4 +92,15 @@ char **parser(char *str, char *separator)
 	tokens[i] = NULL;
 	free(aux);
 	return (tokens);
+}
+
+int is_empty_line(const char *line)
+{
+    while (*line != '\0')
+    {
+        if (!isspace(*line))
+            return 0;
+        line++;
+    }
+    return 1;
 }

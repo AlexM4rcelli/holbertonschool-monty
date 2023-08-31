@@ -10,9 +10,10 @@ void my_pop(stack_t **head, unsigned int line)
 
 	if (*head == NULL)
 	{
-		fprintf(stderr, "L%u: can't pop an stack empty\n", line);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line);
 		free_all(vars.ins);
 		free(vars.buff);
+		fclose(vars.file);
 		exit(EXIT_FAILURE);
 	}
 
@@ -36,8 +37,10 @@ void my_swap(stack_t **head, unsigned int line)
 	if (*head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line);
+		free_stack(vars.stack);
 		free_all(vars.ins);
 		free(vars.buff);
+		fclose(vars.file);
 		exit(EXIT_FAILURE);
 	}
 
@@ -62,8 +65,10 @@ void my_add(stack_t **head, unsigned int line)
 	if (*head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line);
+		free_stack(vars.stack);
 		free_all(vars.ins);
 		free(vars.buff);
+		fclose(vars.file);
 		exit(EXIT_FAILURE);
 	}
 

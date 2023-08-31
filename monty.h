@@ -50,11 +50,13 @@ typedef struct global_vars_s
         char *buff;
         size_t buffsize;
         stack_t *stack;
+        FILE *file;
 } global_vars_t;
 
 extern global_vars_t vars;
 
 int get_op_code(stack_t **stack, char **ins, unsigned int line);
+
 void my_pall(stack_t **head, unsigned int line);
 void my_push(stack_t **head, unsigned int line);
 void my_pint(stack_t **head, unsigned int line);
@@ -63,9 +65,10 @@ void my_swap(stack_t **head, unsigned int line);
 void my_add(stack_t **head, unsigned int line);
 void my_nop(stack_t **head, unsigned int line);
 
-
-void free_all(char **array);
 char **parser(char *str, char *separator);
+int is_empty_line(const char *line);
+void free_all(char **array);
 void free_stack(stack_t *head);
+void frees(stack_t *stack, char **ins char *buff);
 
 # endif
