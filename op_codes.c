@@ -9,7 +9,7 @@ void my_push(stack_t **head, unsigned int line)
 {
 	int num, i = 0;
 	char *num_str = NULL;
-	stack_t *new;
+	stack_t *new = NULL;
 
 	if (!(vars.ins[1]))
 	{
@@ -54,8 +54,6 @@ void my_push(stack_t **head, unsigned int line)
  */
 void my_pall(stack_t **head, unsigned int line)
 {
-	(void)line;
-
     stack_t *curr = *head;
 
     while (curr)
@@ -63,11 +61,7 @@ void my_pall(stack_t **head, unsigned int line)
         fprintf(stdout, "%i\n", (curr)->n);
         curr = (curr)->next;
     }
-
-    free_all(vars.ins);
-    free(vars.buff);
-    fclose(vars.file);
-    exit(EXIT_SUCCESS);
+    (void)line;
 }
 /**
  * my_pint - prints the value at the top of the stack

@@ -77,7 +77,7 @@ void my_add(stack_t **head, unsigned int line)
 }
 
 /**
-* my_nop - No operation
+* my_nop - No operation, pushes 0 onto the stack
 * @head: Double pointer to the top of the stack (unused)
 * @line: Line number of the instruction in the file (unused)
 */

@@ -50,7 +50,7 @@ int get_op_code(stack_t **stack, char **ins, unsigned int line)
  */
 int main(int argc, char *argv[])
 {
-	size_t readed = 0;
+	ssize_t readed = 0;
 	unsigned int line = 1;
 	int op_code = 0;
 
@@ -65,10 +65,13 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((readed = getline(&vars.buff, &vars.buffsize, vars.file)) > 0)
+	while ((readed = getline(&vars.buff, &vars.buffsize, vars.file)) != -1)
 	{
-		if (is_empty_line(vars.buff, line))
+		if (is_empty_line(vars.buff))
+		{
+			line++;
 			continue;
+		}
 		vars.ins = parser(vars.buff, " $\n\t\r\a");
 		op_code = get_op_code(&vars.stack, vars.ins, line);
 		if (op_code == -1)
@@ -81,9 +84,9 @@ int main(int argc, char *argv[])
 		free_all(vars.ins);
 		line++;
 	}
-	if (fclose(vars.file) == -1)
-		exit(EXIT_FAILURE);
 	free_stack(vars.stack);
 	free(vars.buff);
+	if (fclose(vars.file) == -1)
+		exit(EXIT_FAILURE);
 	return (0);
 }
