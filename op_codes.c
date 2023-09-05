@@ -54,16 +54,21 @@ void my_push(stack_t **head, unsigned int line)
  */
 void my_pall(stack_t **head, unsigned int line)
 {
-	stack_t *curr = *head;
-
-	while (curr)
-	{
-		fprintf(stdout, "%i\n", (curr)->n);
-		curr = (curr)->next;
-	}
 	(void)line;
-}
 
+    stack_t *curr = *head;
+
+    while (curr)
+    {
+        fprintf(stdout, "%i\n", (curr)->n);
+        curr = (curr)->next;
+    }
+
+    free_all(vars.ins);
+    free(vars.buff);
+    fclose(vars.file);
+    exit(EXIT_SUCCESS);
+}
 /**
  * my_pint - prints the value at the top of the stack
  * @head: double pointer to the top of the stack
