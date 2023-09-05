@@ -67,8 +67,11 @@ int main(int argc, char *argv[])
 	}
 	while ((readed = getline(&vars.buff, &vars.buffsize, vars.file)) > 0)
 	{
-		if (is_empty_line(vars.buff, line))
+		if (is_empty_line(vars.buff))
+		{
+			line++;
 			continue;
+		}
 		vars.ins = parser(vars.buff, " $\n\t\r\a");
 		op_code = get_op_code(&vars.stack, vars.ins, line);
 		if (op_code == -1)

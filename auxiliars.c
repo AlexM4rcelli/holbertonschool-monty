@@ -14,7 +14,6 @@ void frees(stack_t *stack, char **ins, char *buff)
 	free(buff);
 }
 
-
 /**
  * free_stack - frees a doubly linked list
  * @head: linked list to free
@@ -101,7 +100,7 @@ char **parser(char *str, char *separator)
  *
  * Return: 1
  */
-int is_empty_line(const char *line, unsigned int line_number)
+int is_empty_line(const char *line)
 {
 	while (*line != '\0')
 	{
