@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 		op_code = get_op_code(&vars.stack, vars.ins, line);
 		if (op_code == -1)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", 
+			fprintf(stderr, "L%d: unknown instruction %s\n",
 			line, vars.ins[0]);
 			frees(vars.stack, vars.ins, vars.buff);
 			fclose(vars.file);
