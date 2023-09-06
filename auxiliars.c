@@ -96,7 +96,6 @@ char **parser(char *str, char *separator)
 /**
  * is_empty_line - verifies if the line is empty
  * @line: the line itself
- * @line_number: the number of the line
  *
  * Return: 1
  */

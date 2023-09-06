@@ -16,9 +16,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+		int n;
+		struct stack_s *prev;
+		struct stack_s *next;
 } stack_t;
 /**
  * struct instruction_s - opcode and its function
@@ -30,8 +30,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+		char *opcode;
+		void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 /**
  * struct global_vars_s - structure to hold global variables for Monty
@@ -42,11 +42,11 @@ typedef struct instruction_s
  */
 typedef struct global_vars_s
 {
-        char **ins;
-        char *buff;
-        size_t buffsize;
-        stack_t *stack;
-        FILE *file;
+		char **ins;
+		char *buff;
+		size_t buffsize;
+		stack_t *stack;
+		FILE *file;
 } global_vars_t;
 
 extern global_vars_t vars;

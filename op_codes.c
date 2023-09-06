@@ -54,14 +54,14 @@ void my_push(stack_t **head, unsigned int line)
  */
 void my_pall(stack_t **head, unsigned int line)
 {
-    stack_t *curr = *head;
+	stack_t *curr = *head;
 
-    while (curr)
-    {
-        fprintf(stdout, "%i\n", (curr)->n);
-        curr = (curr)->next;
-    }
-    (void)line;
+	while (curr)
+	{
+		fprintf(stdout, "%i\n", (curr)->n);
+		curr = (curr)->next;
+	}
+	(void)line;
 }
 /**
  * my_pint - prints the value at the top of the stack
